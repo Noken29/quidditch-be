@@ -1,0 +1,12 @@
+CREATE TABLE comments (
+    id BIGSERIAL NOT NULL,
+    post_id BIGINT NOT NULL,
+    author VARCHAR(255),
+    content VARCHAR(511),
+    posted TIMESTAMP(6),
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE IF EXISTS comments
+ADD CONSTRAINT FK_COMMENTS_POST_ID_POSTS_ID
+FOREIGN KEY (post_id) REFERENCES posts (id);

@@ -1,0 +1,13 @@
+CREATE TABLE players (
+    id BIGSERIAL NOT NULL ,
+    age INTEGER NOT NULL ,
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
+    playerType VARCHAR(255),
+    file_id VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE IF EXISTS players
+ADD CONSTRAINT FK_PLAYERS_FILE_ID_FILES_ID
+FOREIGN KEY (file_id) REFERENCES files;
