@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/comment")
+@RequestMapping("/api/comments")
 public class CommentController {
 
     @Autowired
     private CommentRepository commentRepository;
 
-    @PostMapping("/comment/new")
+    @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
         return new ResponseEntity<>(commentRepository.save(comment), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/comment/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Boolean> deleteComment(@PathVariable("id") Long id) {
         commentRepository.deleteById(id);

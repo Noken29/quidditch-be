@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/player")
+@RequestMapping("/api/players")
 public class PlayerController {
 
     @Autowired
@@ -41,7 +41,7 @@ public class PlayerController {
         return new ResponseEntity<>(playerRepository.saveAll(players), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/save-all", consumes = "application/json")
+    @PutMapping(value = "/update", consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Player> update(@RequestBody Player player) {
         return new ResponseEntity<>(playerRepository.save(player), HttpStatus.OK);
