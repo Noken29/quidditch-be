@@ -24,15 +24,15 @@ public class PlayerController {
     private PlayerRepository playerRepository;
 
     @GetMapping(value = "/get-all", produces = "application/json")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Player>> getAll() {
-        return new ResponseEntity<>(playerRepository.findAll(), HttpStatus.FOUND);
+        return new ResponseEntity<>(playerRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/get/{id}", produces = "application/json")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Player> getOne(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(playerRepository.findById(id).get(), HttpStatus.FOUND);
+        return new ResponseEntity<>(playerRepository.findById(id).get(), HttpStatus.OK);
     }
 
     @PostMapping(value = "/save-all", consumes = "application/json")

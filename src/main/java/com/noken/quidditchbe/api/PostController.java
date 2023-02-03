@@ -25,9 +25,9 @@ public class PostController {
     private CommentRepository commentRepository;
 
     @GetMapping("/get-all")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<PostsDTO> getAllPosts(@RequestParam("page") int page, @RequestParam("length") int length) {
-        return new ResponseEntity<>(postService.getAll(page, length), HttpStatus.FOUND);
+        return new ResponseEntity<>(postService.getAll(page, length), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

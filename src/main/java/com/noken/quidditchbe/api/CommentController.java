@@ -27,7 +27,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Boolean> deleteComment(@PathVariable("id") Long id) {
         commentRepository.deleteById(id);
         return new ResponseEntity<>(true, HttpStatus.OK);
