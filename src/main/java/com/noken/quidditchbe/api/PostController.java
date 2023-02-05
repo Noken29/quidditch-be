@@ -1,5 +1,6 @@
 package com.noken.quidditchbe.api;
 
+import com.noken.quidditchbe.domain.Post;
 import com.noken.quidditchbe.dto.PostsDTO;
 import com.noken.quidditchbe.repository.CommentRepository;
 import com.noken.quidditchbe.service.PostService;
@@ -23,6 +24,12 @@ public class PostController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Post> getPost(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(postService.getById(id), HttpStatus.OK);
+    }
 
     @GetMapping("/get-all")
     @ResponseStatus(HttpStatus.OK)

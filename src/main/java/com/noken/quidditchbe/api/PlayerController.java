@@ -35,6 +35,12 @@ public class PlayerController {
         return new ResponseEntity<>(playerRepository.findById(id).get(), HttpStatus.OK);
     }
 
+    @PostMapping(value = "/save", consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Player> saveAll(@RequestBody Player player) {
+        return new ResponseEntity<>(playerRepository.save(player), HttpStatus.OK);
+    }
+
     @PostMapping(value = "/save-all", consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Player>> saveAll(@RequestBody List<Player> players) {

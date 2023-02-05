@@ -21,6 +21,11 @@ public class PostServiceImpl implements PostService {
     private EntityManager em;
 
     @Override
+    public Post getById(Long id) {
+        return postRepository.findById(id).get();
+    }
+
+    @Override
     public PostsDTO getAll(int page, int length) {
         TypedQuery<Post> postsQuery = em.createQuery("SELECT p FROM Post p", Post.class);
         TypedQuery<Long> totalCountQuery = em.createQuery("SELECT COUNT(p) FROM Post p", Long.class);
