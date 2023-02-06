@@ -3,7 +3,7 @@ CREATE TABLE comments (
     post_id BIGINT NOT NULL,
     author VARCHAR(255),
     content VARCHAR(511),
-    posted TIMESTAMP(6),
+    posted TIMESTAMP(6) DEFAULT now(),
     PRIMARY KEY (id)
 );
 

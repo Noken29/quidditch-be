@@ -9,5 +9,7 @@ public interface PostService {
 
     PostsDTO getAll(int page, int length);
 
+    Post save(Post post);
+
     boolean deleteById(Long id);
 }

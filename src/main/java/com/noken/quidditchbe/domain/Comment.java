@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -35,6 +36,7 @@ public class Comment implements Serializable {
     private long id;
     private String author;
     private String content;
+    @CreationTimestamp
     private Date posted;
 
     @ToString.Exclude

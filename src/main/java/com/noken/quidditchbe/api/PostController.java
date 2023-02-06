@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -35,6 +37,12 @@ public class PostController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<PostsDTO> getAllPosts(@RequestParam("page") int page, @RequestParam("length") int length) {
         return new ResponseEntity<>(postService.getAll(page, length), HttpStatus.OK);
+    }
+
+    @PostMapping("/new")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Post> deletePost(@RequestBody Post post) {
+        return new ResponseEntity<>(postService.save(post), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
