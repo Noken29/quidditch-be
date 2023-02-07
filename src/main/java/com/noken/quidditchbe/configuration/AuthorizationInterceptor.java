@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Configuration
@@ -13,6 +14,8 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        if (HttpMethod.GET.name().equals(request.getMethod()))
+            return true;
         if (!TOKEN.equals(request.getHeader(HttpHeaders.AUTHORIZATION))) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
