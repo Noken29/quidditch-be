@@ -32,4 +32,4 @@ Manual: https://maven.apache.org/install.html.
 
 Run application from main using Idea configuration.
 
-Go to localhost:8080
+Go to localhost:8080/swagger-ui.html
