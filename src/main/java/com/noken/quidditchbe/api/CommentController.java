@@ -25,19 +25,19 @@ public class CommentController {
 
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
+    public ResponseEntity<Comment> save(@RequestBody Comment comment) {
         return new ResponseEntity<>(commentRepository.save(comment), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-all/{postId}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Comment>> getAllComments(@PathVariable("postId") Long postId) {
+    public ResponseEntity<List<Comment>> getAll(@PathVariable("postId") Long postId) {
         return new ResponseEntity<>(commentRepository.findAllByPostId(postId), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> deleteComment(@PathVariable("id") Long id) {
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
         commentRepository.deleteById(id);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }

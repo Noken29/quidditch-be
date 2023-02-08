@@ -26,25 +26,25 @@ public class PostController {
 
     @GetMapping("/get/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Post> getPost(@PathVariable("id") Long id) {
+    public ResponseEntity<Post> getOne(@PathVariable("id") Long id) {
         return new ResponseEntity<>(postService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping("/get-all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<PostsDTO> getAllPosts(@RequestParam("page") int page, @RequestParam("length") int length) {
+    public ResponseEntity<PostsDTO> getAll(@RequestParam("page") int page, @RequestParam("length") int length) {
         return new ResponseEntity<>(postService.getAll(page, length), HttpStatus.OK);
     }
 
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Post> deletePost(@RequestBody Post post) {
+    public ResponseEntity<Post> create(@RequestBody Post post) {
         return new ResponseEntity<>(postService.save(post), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> deletePost(@PathVariable("id") Long id) {
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
         return new ResponseEntity<>(postService.deleteById(id), HttpStatus.OK);
     }
 

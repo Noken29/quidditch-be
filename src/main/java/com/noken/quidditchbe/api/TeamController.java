@@ -21,7 +21,7 @@ public class TeamController {
 
     @GetMapping("/get-all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Team>> getAllTeams() {
+    public ResponseEntity<List<Team>> getAll() {
         return new ResponseEntity<>(teamRepository.findAll(), HttpStatus.OK);
     }
 

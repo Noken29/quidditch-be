@@ -5,6 +5,7 @@ import com.noken.quidditchbe.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +52,13 @@ public class PlayerController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Player> update(@RequestBody Player player) {
         return new ResponseEntity<>(playerRepository.save(player), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
+        playerRepository.deleteById(id);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
 }

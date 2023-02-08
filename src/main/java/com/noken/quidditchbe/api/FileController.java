@@ -24,13 +24,13 @@ public class FileController {
 
     @PostMapping("/upload")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<QFile> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<QFile> upload(@RequestParam("file") MultipartFile file) {
         return new ResponseEntity<>(fileService.mapAndSave(file), HttpStatus.OK);
     }
 
     @GetMapping("/files/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
+    public ResponseEntity<byte[]> getOne(@PathVariable String id) {
         QFile file = fileService.getById(id);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"")
