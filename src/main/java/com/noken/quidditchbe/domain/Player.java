@@ -1,5 +1,6 @@
 package com.noken.quidditchbe.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -44,8 +45,8 @@ public class Player implements Serializable {
     @JoinColumn(name = "file_id")
     private QFile avatar;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "team_id")
     private Team team;
 
 }
