@@ -1,6 +1,6 @@
 CREATE TABLE players (
-    id BIGSERIAL NOT NULL ,
-    age INTEGER NOT NULL ,
+    id BIGSERIAL NOT NULL,
+    age INTEGER NOT NULL,
     firstname VARCHAR(255),
     lastname VARCHAR(255),
     playerType VARCHAR(255),
