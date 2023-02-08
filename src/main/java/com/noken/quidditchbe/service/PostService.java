@@ -5,11 +5,12 @@ import com.noken.quidditchbe.dto.PostsDTO;
 
 public interface PostService {
 
+    Post save(Post post);
+
     Post getById(Long id);
 
     PostsDTO getAll(int page, int length);
 
-    Post save(Post post);
-
     boolean deleteById(Long id);
+
 }

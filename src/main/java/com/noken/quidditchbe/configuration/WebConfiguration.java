@@ -17,6 +17,10 @@ import java.util.Arrays;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
+    private static final String[] EXCLUDE_PATTERNS = {
+            "/swagger-ui/**", "/v3/api-docs/**"
+    };
+
     @Autowired
     private AuthorizationInterceptor authorizationInterceptor;
 
@@ -40,6 +44,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authorizationInterceptor)
-                .excludePathPatterns("/swagger-ui/**", "/v3/api-docs/**");
+                .excludePathPatterns(EXCLUDE_PATTERNS);
     }
+
 }

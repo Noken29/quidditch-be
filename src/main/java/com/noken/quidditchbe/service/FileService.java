@@ -7,4 +7,5 @@ public interface FileService<T, U> {
     T mapAndSave(MultipartFile file);
 
     T getById(U id);
+
 }

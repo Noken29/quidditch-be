@@ -2,24 +2,30 @@ package com.noken.quidditchbe.configuration;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-@Configuration
+import java.util.Objects;
+
+@Component
 public class AuthorizationInterceptor implements HandlerInterceptor {
 
-    private static final String TOKEN = "f9d9b981-45fe-4935-a5e7-7478250531d8";
+    @Value("${q-be.api-key}")
+    private String apiKey;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        if (HttpMethod.GET.name().equals(request.getMethod()))
+        if (Objects.equals(HttpMethod.GET.name(), request.getMethod())) {
             return true;
-        if (!TOKEN.equals(request.getHeader(HttpHeaders.AUTHORIZATION))) {
+        }
+        if (!Objects.equals(apiKey, request.getHeader(HttpHeaders.AUTHORIZATION))) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
         }
         return true;
     }
+
 }

@@ -42,4 +42,5 @@ public class Player implements Serializable {
     @OneToOne
     @JoinColumn(name = "file_id")
     private QFile avatar;
+
 }

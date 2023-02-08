@@ -1,15 +1,18 @@
 package com.noken.quidditchbe.service;
 
 import com.noken.quidditchbe.domain.Post;
+import com.noken.quidditchbe.domain.exception.NotFoundException;
 import com.noken.quidditchbe.dto.PostsDTO;
 import com.noken.quidditchbe.repository.PostRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -21,8 +24,18 @@ public class PostServiceImpl implements PostService {
     private EntityManager em;
 
     @Override
+    public Post save(Post post) {
+        return postRepository.save(post);
+    }
+
+    @Override
+    @SneakyThrows
     public Post getById(Long id) {
-        return postRepository.findById(id).get();
+        Optional<Post> postOptional = postRepository.findById(id);
+        if (postOptional.isEmpty()) {
+            throw new NotFoundException("Post with id: " + id + " not found.");
+        }
+        return postOptional.get();
     }
 
     @Override
@@ -41,13 +54,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post save(Post post) {
-        return postRepository.save(post);
-    }
-
-    @Override
     public boolean deleteById(Long id) {
         postRepository.deleteById(id);
         return true;
     }
+
 }

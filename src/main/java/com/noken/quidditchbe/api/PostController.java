@@ -24,9 +24,6 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @Autowired
-    private CommentRepository commentRepository;
-
     @GetMapping("/get/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Post> getPost(@PathVariable("id") Long id) {
