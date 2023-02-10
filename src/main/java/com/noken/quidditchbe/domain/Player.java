@@ -1,9 +1,11 @@
 package com.noken.quidditchbe.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Fetch;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -46,7 +49,7 @@ public class Player implements Serializable {
     private QFile avatar;
 
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 
 }
