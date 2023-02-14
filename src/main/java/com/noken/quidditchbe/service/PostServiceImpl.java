@@ -40,7 +40,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostsDTO getAll(int page, int length) {
-        TypedQuery<Post> postsQuery = em.createQuery("SELECT p FROM Post p", Post.class);
+        TypedQuery<Post> postsQuery = em.createQuery("SELECT p FROM Post p ORDER BY p.posted DESC", Post.class);
         TypedQuery<Long> totalCountQuery = em.createQuery("SELECT COUNT(p) FROM Post p", Long.class);
         List<Post> posts = postsQuery
                 .setFirstResult((page - 1) * length)
